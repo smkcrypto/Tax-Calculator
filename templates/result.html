@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tax Calculation Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tax Calculation Result</h1>
+        <p>Tax according to the new tax regime: ₹{{ tax_new }}</p>
+        <p>Tax according to the old tax regime: ₹{{ tax_old }}</p>
+        {% if tax_saving %}
+            <p>You chose to include tax saving schemes.</p>
+            {% if tax_new < tax_old %}
+                <p>It's better to go with the new tax regime: ₹{{ tax_new }}</p>
+            {% else %}
+                <p>It's better to go with the old tax regime: ₹{{ tax_old }}</p>
+            {% endif %}
+        {% else %}
+            <p>You chose not to include tax saving schemes.</p>
+            <p>It's always better to go with the new tax regime without tax saving schemes: ₹{{ tax_new }}</p>
+        {% endif %}
+        <a href="/">Go back</a>
+    </div>
+</body>
+</html>
+
+
+
+
